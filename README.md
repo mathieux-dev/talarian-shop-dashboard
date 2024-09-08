@@ -54,8 +54,3 @@ Depois que o sistema estiver rodando, acesse o painel através do seguinte link:
 ```
 http://localhost:5000
 ```
-
-## Contato
-Em caso de dúvidas, entre em contato:
-- **Email**: [Seu Email]
-```
