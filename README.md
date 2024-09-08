@@ -1,95 +1,61 @@
-# TolarianShop Dashboard
+# Tolarian Shop Dashboard
+[![Conectar novo server](./TolarianShop.Dashboard/TolarianShop/assets/tolarian-shop-dashboard.png)](/)
+
+## Desenvolvedor
+**Mateus Vieira Mourão**
+[GitHub](https://github.com/mathieux-dev) | [LinkedIn](https://www.linkedin.com/in/mateus-mourao/) | [Portfólio](https://mathieux-dev.github.io/)
 
 ## Descrição do Projeto
-
-Este projeto é uma aplicação web desenvolvida como parte de um teste técnico para a TechNation. O objetivo é criar uma ferramenta para gerenciar e visualizar dados financeiros de notas fiscais emitidas. A aplicação inclui um dashboard com indicadores financeiros e uma lista detalhada das notas fiscais, permitindo filtragem e análise.
+Tolarian Shop Dashboard é um sistema para gerenciar notas fiscais, exibindo informações detalhadas de cada transação.
 
 ## Tecnologias Utilizadas
+- **ASP.NET Core**: 8.0
+- **SQL Server**: 2022
+- **Docker**: Latest
+- **Entity Framework Core**: 8.0
 
-- **Frontend:**
-  - HTML, CSS, JavaScript
-  - jQuery
-  - Bootstrap
-  - Chart.js (ou outra biblioteca de gráficos)
-  
-- **Backend:**
-  - C# com .NET 6 (versão LTS)
-  - ASP.NET Core MVC
-  - Entity Framework Core
-  
-- **Banco de Dados:**
-  - SQL Server
-  
-- **Infraestrutura:**
-  - Docker
-  - Docker Compose
+## Instruções de Setup
 
-## Funcionalidades
+### Passo 1: Clonar o Repositório
+Baixe o projeto em sua máquina local executando o seguinte comando:
 
-### Dashboard
-- **Valor Total das Notas Emitidas**: Exibe o valor total de todas as notas fiscais emitidas.
-- **Valor das Notas Sem Cobrança**: Mostra o valor total das notas emitidas, mas sem cobrança feita.
-- **Valor das Notas Vencidas (Inadimplência)**: Exibe o valor total das notas que não foram pagas dentro do prazo.
-- **Valor das Notas a Vencer**: Exibe o valor total das notas que ainda estão no prazo de pagamento.
-- **Valor das Notas Pagas**: Exibe o valor total das notas que foram pagas.
-- **Gráfico de Evolução da Inadimplência**: Um gráfico que mostra a inadimplência mês a mês.
-- **Gráfico de Evolução da Receita**: Um gráfico que mostra a receita recebida mês a mês.
+```bash
+git clone https://github.com/seu-repositorio/tolarian-shop-dashboard.git
+cd tolarian-shop-dashboard
+```
 
-### Lista de Notas Fiscais
-- **Nome do Pagador**
-- **Número de Identificação da Nota**
-- **Data de Emissão**
-- **Data da Cobrança**
-- **Data do Pagamento**
-- **Valor da Nota**
-- **Documentos Associados** (Nota Fiscal e Boleto Bancário)
-- **Status da Nota** (Emitida, Cobrança Realizada, Pagamento em Atraso, Pagamento Realizado)
+### Passo 2: Baixar, Configurar e Executar o Docker
+Depois de baixar o docker, o execute e na raiz do projeto, execute o Docker Compose para construir e executar os contêineres:
 
-### Filtros
-- Filtros por mês de emissão, mês de cobrança, mês de pagamento e status da nota.
+```bash
+docker-compose up --build -d
+```
 
-## Configuração do Ambiente
+Isso iniciará os contêineres da aplicação e do banco de dados.
 
-### Pré-requisitos
+### Passo 3: Conectar ao Servidor SQL
+Conecte-se ao servidor SQL (aqui serão adicionados os prints):
 
-- **Docker**
-- **Docker Compose**
-- **.NET 8 SDK**
-- **SQL Server**
+- Use o **SQL Server Management Studio (SSMS)**.
+- Host: `localhost`
+- Porta: `1433`
+- **Login**: `sa`
+- **Senha**: `P@ssw0rd2024!`
 
-### Configuração do Docker
+[![Conectar novo server](./TolarianShop.Dashboard/TolarianShop/assets/conectar-new-bd.png)](/)
 
-1. **Clone o repositório:**
-   ```bash
-   git clone https://github.com/seu-usuario/TolarianShop Dashboard.git
-   cd TolarianShop Dashboard
-   ```
+### Passo 4: Executar o Script do Banco de Dados
+Após conectar-se ao SQL Server, execute o script SQL localizado em `/scripts/script.sql` para criar e popular o banco de dados.
+Copie o conteúdo do `script.sql` em uma nova consulta e a execute.
 
-2. **Configuração do Docker Compose:**
-   - O arquivo `docker-compose.yml` foi configurado para rodar o SQL Server e a aplicação em contêineres separados.
+### Passo 5: Acessar o Sistema
+Depois que o sistema estiver rodando, acesse o painel através do seguinte link:
 
-3. **Construir a Imagem Docker:**
-   ```bash
-   docker-compose build
-   ```
+```
+http://localhost:5000
+```
 
-4. **Rodar os Contêineres:**
-   ```bash
-   docker-compose up
-   ```
-
-5. **Acessar a Aplicação:**
-   - A aplicação estará disponível em `http://localhost:8000`.
-
-## Configuração do Banco de Dados
-
-- As migrações do Entity Framework Core são aplicadas automaticamente na inicialização do contêiner.
-- Se precisar rodar as migrações manualmente:
-  ```bash
-  dotnet ef database update
-  ```
-
-## Testes
-
-- **Unitários**: Testes unitários podem ser adicionados na pasta `Tests` usando frameworks como xUnit ou NUnit.
-- **Integração**: Testes de integração podem ser escritos para validar a interação entre diferentes partes do sistema.
+## Contato
+Em caso de dúvidas, entre em contato:
+- **Email**: [Seu Email]
+```
