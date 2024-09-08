@@ -1,0 +1,190 @@
+﻿@{
+    ViewData["Title"] = "Notas Emitidas";
+}
+
+<style>
+</style>
+
+<div class="container">
+    <h2>Notas Emitidas</h2>
+
+    <div class="row">
+        <div class="col-md-3">
+            <div class="form-group">
+                <div class="form-group">
+                    <label for="filtroAnoEmissao">Ano de Emissão</label>
+                    <select class="form-control" id="filtroAnoEmissao">
+                        <option value="">Todos</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <label for="filtroMes">Mês</label>
+            <select class="form-control" id="filtroMesEmissao">
+                <option value="">Todos</option>
+                <option value="1">Janeiro</option>
+                <option value="2">Fevereiro</option>
+                <option value="3">Março</option>
+                <option value="4">Abril</option>
+                <option value="5">Maio</option>
+                <option value="6">Junho</option>
+                <option value="7">Julho</option>
+                <option value="8">Agosto</option>
+                <option value="9">Setembro</option>
+                <option value="10">Outubro</option>
+                <option value="11">Novembro</option>
+                <option value="12">Dezembro</option>
+            </select>
+        </div>
+        <div class="col-md-3">
+            <div class="form-group">
+                <label for="filtroStatus">Status</label>
+                <select class="form-control" id="filtroStatus">
+                    <option value="">Todos</option>
+                    <option value="1">Emitida</option>
+                    <option value="2">Cobrança Feita</option>
+                    <option value="3">Pagamento Atrasado</option>
+                    <option value="4">Pagamento Feito</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <button class="btn btn-primary-tolarianshop" style="margin-top: 32px;" onclick="aplicarFiltros()">Aplicar Filtros</button>
+        </div>
+    </div>
+
+    <button class="btn btn-primary-tolarianshop" data-toggle="modal" style="margin: 20px 0;" data-target="#adicionarNotaModal">Adicionar Nota</button>
+    <table class="table table-striped" id="tabelaNotas">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Número da Nota</th>
+                <th>Data de Emissão</th>
+                <th>Data de Cobrança</th>
+                <th>Data de Pagamento</th>
+                <th>Valor</th>
+                <th>Status</th>
+                <th width="12%">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
+
+    <nav aria-label="Navegação de páginas">
+        <ul class="pagination" id="paginacao">
+        </ul>
+    </nav>
+</div>
+
+<div class="modal fade" id="adicionarNotaModal" tabindex="-1" role="dialog" aria-labelledby="adicionarNotaModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="adicionarNotaModalLabel">Adicionar Nota</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="formAdicionarNota">
+                    <div class="form-group">
+                        <label for="nomePagador">Nome do Pagador</label>
+                        <input type="text" class="form-control" id="nomePagador" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="numeroNotaFiscal">Número da Nota</label>
+                        <input type="text" class="form-control" id="numeroNotaFiscal" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dataEmissao">Data de Emissão</label>
+                        <input type="date" class="form-control" id="dataEmissao" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="dataCobrança">Data de Cobrança</label>
+                        <input type="date" class="form-control" id="dataCobrança">
+                    </div>
+                    <div class="form-group">
+                        <label for="dataPagamento">Data de Pagamento</label>
+                        <input type="date" class="form-control" id="dataPagamento">
+                    </div>
+                    <div class="form-group">
+                        <label for="valor">Valor</label>
+                        <input type="number" step="0.01" class="form-control" id="valor" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select class="form-control" id="status" required>
+                            <option value="1">Emitida</option>
+                            <option value="2">Cobrança Feita</option>
+                            <option value="3">Pagamento Atrasado</option>
+                            <option value="4">Pagamento Feito</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary-tolarianshop">Adicionar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editarNotaModal" tabindex="-1" role="dialog" aria-labelledby="editarNotaModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editarNotaModalLabel">Editar Nota</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="formEditarNota">
+                    <input type="hidden" id="editarNotaId">
+                    <div class="form-group">
+                        <label for="editarNomePagador">Nome do Pagador</label>
+                        <input type="text" class="form-control" id="editarNomePagador" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editarNumeroNotaFiscal">Número da Nota</label>
+                        <input type="text" class="form-control" id="editarNumeroNotaFiscal" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editarDataEmissao">Data de Emissão</label>
+                        <input type="date" class="form-control" id="editarDataEmissao" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editarDataCobranca">Data de Cobrança</label>
+                        <input type="date" class="form-control" id="editarDataCobrança">
+                    </div>
+                    <div class="form-group">
+                        <label for="editarDataPagamento">Data de Pagamento</label>
+                        <input type="date" class="form-control" id="editarDataPagamento">
+                    </div>
+                    <div class="form-group">
+                        <label for="editarValor">Valor</label>
+                        <input type="number" step="0.01" class="form-control" id="editarValor" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editarStatus">Status</label>
+                        <select class="form-control" id="editarStatus" required>
+                            <option value="1">Emitida</option>
+                            <option value="2">Cobrança Feita</option>
+                            <option value="3">Pagamento Atrasado</option>
+                            <option value="4">Pagamento Feito</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary-tolarianshop">Salvar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./js/notasEmitidas.js"></script>
+}

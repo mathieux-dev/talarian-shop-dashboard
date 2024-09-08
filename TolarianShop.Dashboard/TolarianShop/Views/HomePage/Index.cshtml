@@ -1,0 +1,109 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+<div class="container">
+    <h2>Dashboard</h2>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="filtroAno">Ano</label>
+                <select class="form-control" id="filtroAno">
+                    <option value="">Todos</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="filtroTrimestre">Trimestre</label>
+                <select class="form-control" id="filtroTrimestre">
+                    <option value="">Todos</option>
+                    <option value="1">1º Trimestre</option>
+                    <option value="2">2º Trimestre</option>
+                    <option value="3">3º Trimestre</option>
+                    <option value="4">4º Trimestre</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="filtroMes">Mês</label>
+                <select class="form-control" id="filtroMes">
+                    <option value="">Todos</option>
+                    <option value="1">Janeiro</option>
+                    <option value="2">Fevereiro</option>
+                    <option value="3">Março</option>
+                    <option value="4">Abril</option>
+                    <option value="5">Maio</option>
+                    <option value="6">Junho</option>
+                    <option value="7">Julho</option>
+                    <option value="8">Agosto</option>
+                    <option value="9">Setembro</option>
+                    <option value="10">Outubro</option>
+                    <option value="11">Novembro</option>
+                    <option value="12">Dezembro</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card marginb">
+                <div class="card-body">
+                    <h5 class="card-title">Total de Notas Emitidas</h5>
+                    <p class="card-text" id="totalNotasEmitidas">R$ 0,00</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card marginb">
+                <div class="card-body">
+                    <h5 class="card-title">Total Sem Cobrança</h5>
+                    <p class="card-text" id="totalSemCobranca">R$ 0,00</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card marginb">
+                <div class="card-body">
+                    <h5 class="card-title">Total Inadimplentes</h5>
+                    <p class="card-text" id="totalInadimplente">R$ 0,00</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card marginb">
+                <div class="card-body">
+                    <h5 class="card-title">Total a Vencer</h5>
+                    <p class="card-text" id="totalParaVencer">R$ 0,00</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card marginb">
+                <div class="card-body">
+                    <h5 class="card-title">Total Pago</h5>
+                    <p class="card-text" id="totalPago">R$ 0,00</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <h3>Gráfico de Inadimplência</h3>
+            <canvas id="graficoInadimplentes"></canvas>
+        </div>
+        <div class="col-md-6">
+            <h3>Gráfico de Receita Recebida</h3>
+            <canvas id="graficoRendimentos"></canvas>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="/js/dashboard.js"></script>
